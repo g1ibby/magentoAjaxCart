@@ -2,7 +2,7 @@
     "name": "oggetto/ajax-cart",
     "type": "magento-module",
     "license": "MIT",
-    "homepage": "https://github.com/wss-world/AjaxCart",
+    "homepage": "https://github.com/wss-world/magentoAjaxCart",
     "description": "Ajax cart for magento",
     "authors": [
         {
