@@ -1,0 +1,26 @@
+<?php if($this->getSummaryCount() != 0): ?>
+    <ul id="cart-sidebar" class="minicart-products-list" >
+        <?php foreach($this->getItems() as $_item): ?>
+            <?php echo $this->getItemHtml($_item) ?>
+        <?php endforeach; ?>
+    </ul>
+<?php endif ?>
+
+<div class="minicart-checkout">
+    <?php if($this->getSummaryCount() != 0): ?>
+        <?php echo $this->getChildHtml('totals');?>
+
+        <div class="minicart-actions">
+            <a title="<?php echo $this->__('Checkout') ?>" class="checkout-button_minicart" href="<?php echo $this->getCheckoutUrl() ?>">
+                <?php echo $this->__('Checkout') ?>
+            </a>
+            <a class="minicart-actions-link" href="<?php echo $this->getUrl('checkout/cart'); ?>">
+                <?php echo $this->__('View Shopping Cart'); ?>
+            </a>
+        </div>
+    <?php endif ?>
+
+    <?php if($this->getSummaryCount() == 0): ?>
+        <p class="minicart-empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
+    <?php endif ?>
+</div>

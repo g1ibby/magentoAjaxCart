@@ -1,0 +1,25 @@
+<div id="mcart" class="minicart
+<?php if ($this->getSummaryCount() <= 0): ?> no-count<?php endif; ?>">
+    <span class="minicart__icon"></span>
+
+    <div class="minicart-title">
+        <?php if($this->getSummaryCount() != 0): ?>
+            <span class="minicart-title__price"><?php echo $this->getSummaryCount(); ?></span>
+            <?php echo $this->getTextCart() ?> <?php echo $this->__('for the') ?>
+            <span class="minicart-title__price">
+                <?php echo $this->helper('core')->currency($this->getGrandTotal(), true, true); ?>
+            </span>
+        <?php endif ?>
+        <?php if($this->getSummaryCount() == 0): ?>
+            <p class="minicart-empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
+        <?php endif ?>
+    </div>
+
+    <?php if($this->getSummaryCount() != 0): ?>
+        <div id="mcartDropdown" class="minicart-content">
+            <?php echo $this->getChildHtml('minicart_content'); ?>
+        </div>
+    <?php endif ?>
+
+    <div id="errorPopup" class="notify-popup oggetto-popup" style="display: none;"></div>
+</div>

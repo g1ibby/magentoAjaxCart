@@ -1,0 +1,22 @@
+{
+    "name": "oggetto/ajax-cart",
+    "type": "magento-module",
+    "license": "MIT",
+    "homepage": "https://github.com/wss-world/AjaxCart",
+    "description": "Ajax cart for magento",
+    "authors": [
+        {
+        	"name": "Sergei Waribrus",
+        	"email": "wss.world@gmail.com"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "extra": {
+        "map": [
+            ["app/etc/modules/Oggetto_AjaxCart.xml", "app/etc/modules/Oggetto_AjaxCart.xml"],
+            ["app/code/local/Oggetto/AjaxCart", "app/code/local/Oggetto/AjaxCart"]
+        ]
+    }
+}

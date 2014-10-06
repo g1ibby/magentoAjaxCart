@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Oggetto Web extension for Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade
+ * the Oggetto AjaxCart module to newer versions in the future.
+ * If you wish to customize the Oggetto AjaxCart module for your needs
+ * please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   Oggetto
+ * @package    Oggetto_AjaxCart
+ * @copyright  Copyright (C) 2014
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<layout version="1.0.0">
+    <default>
+        <update handle="html_header_cart_handler" />
+    </default>
+
+    <html_header_cart_handler>
+        <reference name="header">
+            <block type="ajaxcart/cart_minicart" name="html.header.cart" as="html_header_cart" template="ajaxcart/cart/minicart.phtml" >
+                <block type="ajaxcart/cart_sidebar" name="minicart_content" as="minicart_content" template="ajaxcart/cart/items.phtml">
+                    <block type="ajaxcart/cart_totals" name="minicart.totals" as="totals" template="ajaxcart/cart/totals.phtml"/>
+                    <action method="addItemRender"><type>default</type><block>ajaxcart/cart_item</block><template>ajaxcart/cart/default.phtml</template></action>
+                </block>
+            </block>
+        </reference>
+    </html_header_cart_handler>
+
+    <cart_mini>
+        <block type="ajaxcart/cart_minicart" name="html.header.cart" as="html_header_cart" template="ajaxcart/cart/minicart.phtml" output="toHtml">
+            <block type="ajaxcart/cart_sidebar" name="minicart_content" as="minicart_content" template="ajaxcart/cart/items.phtml">
+                <block type="ajaxcart/cart_totals" name="minicart.totals" as="totals" template="ajaxcart/cart/totals.phtml"/>
+                <action method="addItemRender"><type>default</type><block>ajaxcart/cart_item</block><template>ajaxcart/cart/default.phtml</template></action>
+            </block>
+        </block>
+    </cart_mini>
+
+    <cart_big>
+        <block type="checkout/cart" name="checkout.cart" template="checkout/cart.phtml" output="toHtml">
+
+            <action method="setCartTemplate"><value>checkout/cart.phtml</value></action>
+            <action method="setEmptyTemplate"><value>checkout/cart/noItems.phtml</value></action>
+            <action method="chooseTemplate"/>
+            <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/item/default.phtml</template></action>
+            <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/item/default.phtml</template></action>
+            <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/item/default.phtml</template></action>
+
+            <block type="core/text_list" name="checkout.cart.top_methods" as="top_methods" translate="label">
+                <label>Payment Methods Before Checkout Button</label>
+                <block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="checkout/onepage/link.phtml"/>
+            </block>
+
+            <block type="page/html_wrapper" name="checkout.cart.form.before" as="form_before" translate="label">
+                <label>Shopping Cart Form Before</label>
+            </block>
+
+            <block type="core/text_list" name="checkout.cart.methods" as="methods" translate="label">
+                <label>Payment Methods After Checkout Button</label>
+                <block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="checkout/onepage/link.phtml"/>
+                <block type="checkout/multishipping_link" name="checkout.cart.methods.multishipping" template="checkout/multishipping/link.phtml"/>
+            </block>
+
+            <block type="checkout/cart_coupon" name="checkout.cart.coupon" as="coupon" template="checkout/cart/coupon.phtml"/>
+            <block type="checkout/cart_shipping" name="checkout.cart.shipping" as="shipping" template="checkout/cart/shipping.phtml"/>
+            <block type="checkout/cart_crosssell" name="checkout.cart.crosssell" as="crosssell" template="checkout/cart/crosssell.phtml"/>
+
+            <block type="checkout/cart_totals" name="checkout.cart.totals" as="totals" template="checkout/cart/totals.phtml"/>
+        </block>
+    </cart_big>
+
+    <wishlist>
+        <block type="wishlist/customer_wishlist" name="customer.wishlist" template="giftregistry/wishlist/view.phtml" output="toHtml"/>
+    </wishlist>
+
+    <cart_popup>
+        <block type="oggetto_catalog/product_confirmDialog" name="confirm.dialog" as="confirm_dialog" template="oggetto/catalog/product/ajax/confirm_dialog.phtml" output="toHtml">
+            <block type="oggetto_catalog/product_confirmDialog" name="confirm.dialog.items" as="confirm_dialog_items" template="oggetto/catalog/product/ajax/items.phtml" />
+        </block>
+    </cart_popup>
+</layout>

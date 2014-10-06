@@ -1,0 +1,22 @@
+<ul class="minicart-shopping-cart-list">
+    <?php foreach($this->getTotals() as $code => $total): ?>
+        <?php if($code == 'grand_total') continue;?>
+        <li class="minicart-shopping-cart__item">
+            <div class="minicart-shopping-cart__label">
+                <?php echo $total->getTitle(); ?><span class="points"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </span>
+            </div>
+            <div class="minicart-shopping-cart__price">
+                <?php echo $this->helper('checkout')->formatPrice($total->getValue()) ?>
+            </div>
+        </li>
+    <?php endforeach; ?>
+    <li class="minicart-shopping-cart__item">
+        <div class="minicart-shopping-cart__label minicart-shopping-cart__label_total">
+            <?php echo $this->getTotals()['grand_total']->getTitle(); ?>
+            <span class="points points_total"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . </span>
+        </div>
+        <div class="minicart-shopping-cart__price minicart-shopping-cart__price_total">
+            <?php echo $this->helper('checkout')->formatPrice($this->getTotals()['grand_total']->getValue()); ?>
+        </div>
+    </li>
+</ul>
